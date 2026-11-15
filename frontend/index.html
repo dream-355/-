@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07110f" />
+  <meta name="description" content="知衡健康：基于医疗知识图谱与人工智能模型的个人健康助手" />
+  <title>知衡健康 · 医疗知识智能体</title>
+  <script>
+    try {
+      document.documentElement.dataset.theme =
+        localStorage.getItem("zhiheng_theme") === "light" ? "light" : "dark";
+    } catch {
+      document.documentElement.dataset.theme = "dark";
+    }
+  </script>
+  <link rel="stylesheet" href="/assets/styles.css?v=20261106-29" />
+  <link rel="manifest" href="/assets/manifest.webmanifest" />
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <svg class="svg-defs" aria-hidden="true">
+    <defs>
+      <linearGradient id="jade-gradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#8fffd0" />
+        <stop offset="100%" stop-color="#28b98a" />
+      </linearGradient>
+      <linearGradient id="gold-gradient" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#f5e7be" />
+        <stop offset="100%" stop-color="#c9a96a" />
+      </linearGradient>
+      <filter id="soft-glow">
+        <feGaussianBlur stdDeviation="4" result="blur" />
+        <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+      </filter>
+    </defs>
+  </svg>
+
+  <section class="auth-screen" id="auth-screen">
+    <div class="auth-visual">
+      <div class="auth-glow auth-glow-a"></div>
+      <div class="auth-glow auth-glow-b"></div>
+      <div class="auth-grid"></div>
+      <header class="brand-lockup">
+        <span class="brand-mark" aria-hidden="true">
+          <span></span><span></span><i></i>
+        </span>
+        <span class="brand-copy">
+          <strong>知衡健康</strong>
+          <small>知衡健康 · 个人健康智能</small>
+        </span>
+      </header>
+      <div class="auth-message">
+        <div class="eyebrow"><span></span> 可靠知识支持的健康管理</div>
+        <h1>让每一次健康疑问<br />都有<span>证据可循</span></h1>
+        <p>融合 14 万级医疗知识节点、个人健康档案与受约束大模型，构建从症状理解到长期健康管理的可信智能体。</p>
+        <div class="auth-proof">
+          <div><strong>141K+</strong><span>医疗实体</span></div>
+          <div><strong>685K+</strong><span>知识关系</span></div>
+          <div><strong>24/7</strong><span>健康陪伴</span></div>
+        </div>
+      </div>
+      <div class="auth-orbit" id="auth-orbit" aria-hidden="true">
+        <div class="orbit-ring ring-one"></div>
+        <div class="orbit-ring ring-two"></div>
+        <div class="orbit-ring ring-three"></div>
+        <div class="orbit-core">
+          <span class="core-cross"></span>
+          <i></i><i></i><i></i>
+        </div>
+        <span class="orbit-node node-a"></span>
+        <span class="orbit-node node-b"></span>
+        <span class="orbit-node node-c"></span>
+        <span class="orbit-node node-d"></span>
+      </div>
+      <footer class="auth-footer">
+        <span><i class="live-dot"></i> Neo4j 图谱在线</span>
+        <span>隐私优先 · 本地数据存储</span>
+      </footer>
+    </div>
+
+    <div class="auth-panel">
+      <button class="auth-theme-toggle" type="button" data-theme-toggle aria-label="切换界面主题"></button>
+      <div class="auth-card">
+        <div class="auth-card-heading">
+          <span class="mini-mark"><i></i></span>
+          <div>
+            <p>欢迎回来</p>
+            <h2 id="auth-title">登录你的健康空间</h2>
+          </div>
+        </div>
+        <p class="auth-subtitle" id="auth-subtitle">你的连续健康记忆，从一次对话开始。</p>
+        <form id="auth-form" autocomplete="on">
+          <label class="field auth-name-field" hidden>
+            <span>称呼</span>
+            <div class="input-shell">
+              <span class="field-icon" data-icon="user"></span>
+              <input name="name" id="auth-name" type="text" placeholder="我们该如何称呼你" minlength="2" maxlength="24" />
+            </div>
+          </label>
+          <label class="field">
+            <span>邮箱</span>
+            <div class="input-shell">
+              <span class="field-icon" data-icon="mail"></span>
+              <input name="email" id="auth-email" type="email" placeholder="name@example.com" required />
+            </div>
+          </label>
+          <label class="field">
+            <span>密码</span>
+            <div class="input-shell">
+              <span class="field-icon" data-icon="lock"></span>
+              <input name="password" id="auth-password" type="password" placeholder="至少 8 位字符" minlength="8" required />
+              <button type="button" class="password-toggle" id="password-toggle" aria-label="显示密码">显示</button>
+            </div>
+          </label>
+          <p class="form-error" id="auth-error" role="alert"></p>
+          <p class="auth-forgot-row">
+            <button type="button" id="forgot-password">忘记密码？通过邮箱验证码重置</button>
+          </p>
+          <button class="primary-button auth-submit" id="auth-submit" type="submit">
+            <span>进入健康空间</span><span class="arrow">↗</span>
+          </button>
+        </form>
+        <div class="auth-divider"><span>或</span></div>
+        <button class="demo-button" id="demo-login" type="button">
+          <span class="demo-spark">✦</span>
+          <span><strong>游客快速体验</strong><small>使用林知夏种子档案，免注册进入完整演示</small></span>
+          <span class="arrow">→</span>
+        </button>
+        <p class="auth-switch">
+          <span id="auth-switch-copy">还没有账户？</span>
+          <button type="button" id="auth-switch">创建账户</button>
+        </p>
+        <p class="auth-legal">继续即表示你理解：本产品提供健康科普与辅助分诊，不替代专业医疗诊断。</p>
+      </div>
+      <p class="auth-copyright">© 2026 知衡健康 · 专注可信健康管理</p>
+    </div>
+  </section>
+
+  <div class="app-shell" id="app-shell" hidden>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <span class="brand-mark small" aria-hidden="true"><span></span><span></span><i></i></span>
+        <div><strong>知衡健康</strong><small>个人健康智能助手</small></div>
+      </div>
+      <nav class="primary-nav" aria-label="主导航">
+        <button data-view="dashboard" class="nav-item active">
+          <span data-icon="dashboard"></span><span>健康总览</span>
+        </button>
+        <button data-view="chat" class="nav-item">
+          <span data-icon="message"></span><span>健康咨询</span><em class="nav-badge">智能</em>
+        </button>
+        <button data-view="health" class="nav-item">
+          <span data-icon="heart"></span><span>健康档案</span>
+        </button>
+        <button data-view="triage" class="nav-item">
+          <span data-icon="scan"></span><span>智能检测</span>
+        </button>
+        <button data-view="graph" class="nav-item">
+          <span data-icon="graph"></span><span>知识图谱</span>
+        </button>
+        <button data-view="knowledge" class="nav-item">
+          <span data-icon="book"></span><span>医学知识库</span>
+        </button>
+        <button data-view="lifestyle" class="nav-item">
+          <span data-icon="sparkles"></span><span>健康生活</span>
+        </button>
+      </nav>
+      <div class="sidebar-space-head" id="sidebar-space-head">
+        <button class="sidebar-space-toggle" id="sidebar-space-toggle" type="button" aria-expanded="false" aria-controls="sidebar-history" title="展开或收起我的空间">
+          <span class="sidebar-space-arrow" data-icon="chevron"></span>
+          <span class="sidebar-space-title">我的空间</span>
+          <b class="sidebar-space-count" id="sidebar-space-count">0</b>
+        </button>
+        <button class="sidebar-manage" id="sidebar-manage" type="button" title="批量管理对话" aria-label="批量管理对话" data-icon="edit" hidden></button>
+      </div>
+      <div class="sidebar-history" id="sidebar-history">
+        <div class="sidebar-history-empty">正在载入对话记录…</div>
+      </div>
+      <button class="sidebar-link" id="new-chat-side">
+        <span data-icon="plus"></span> 新建健康对话
+      </button>
+      <div class="sidebar-spacer"></div>
+      <div class="system-card">
+        <div class="system-orbit"><span></span></div>
+        <div>
+          <strong>医疗图谱引擎</strong>
+          <p><i class="live-dot"></i><span id="sidebar-graph-status">连接中</span></p>
+        </div>
+        <button data-view="graph" aria-label="查看图谱">↗</button>
+      </div>
+      <div class="sidebar-user">
+        <span class="avatar" id="sidebar-avatar">知</span>
+        <div><strong id="sidebar-user-name">林知夏</strong><small>健康档案本地保存</small></div>
+        <button class="icon-button" id="user-menu-button" aria-label="用户菜单" data-icon="more"></button>
+        <div class="user-menu" id="user-menu" hidden>
+          <button data-view="health"><span data-icon="user"></span>个人档案</button>
+          <button id="settings-button"><span data-icon="settings"></span>显示设置</button>
+          <button id="feedback-button"><span data-icon="sparkles"></span>体验反馈</button>
+          <button id="logout-button"><span data-icon="logout"></span>退出登录</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-shell">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航" data-icon="menu"></button>
+          <button class="icon-button navigation-back" id="navigation-back" type="button" aria-label="返回上一步" title="没有上一步" disabled></button>
+          <div class="breadcrumb">
+          <span>知衡健康</span><i>/</i><strong id="page-title">健康总览</strong>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="command-search" id="command-search">
+            <span data-icon="search"></span>
+            <span>搜索知识、症状或对话</span>
+          <kbd>快捷搜索</kbd>
+          </button>
+          <div class="model-pill" id="model-pill">
+            <span class="pulse-ring"></span>
+            <span>DeepSeek 模型</span>
+            <small id="model-status">待配置</small>
+          </div>
+          <button class="icon-button theme-toggle-button" type="button" data-theme-toggle aria-label="切换界面主题"></button>
+          <button class="icon-button notification-button" id="notification-button" aria-label="系统状态" data-icon="bell">
+            <i></i>
+          </button>
+          <button class="top-avatar" id="top-avatar">知</button>
+        </div>
+      </header>
+      <div class="view-stack" id="view-stack">
+        <div class="loading-screen">
+          <div class="medical-loader"><span></span><span></span><span></span><i></i></div>
+          <p>正在建立可信健康上下文…</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="command-palette" id="command-palette" hidden>
+    <button class="palette-backdrop" data-close-palette aria-label="关闭"></button>
+    <div class="palette-dialog">
+      <div class="palette-search">
+        <span data-icon="search"></span>
+        <input id="palette-input" placeholder="搜索症状、知识实体或页面…" autocomplete="off" />
+        <kbd>退出</kbd>
+      </div>
+      <div class="palette-results" id="palette-results">
+        <p class="palette-label">快速前往</p>
+        <button data-view="chat"><span data-icon="message"></span><span>开始一次健康咨询</span><kbd>↵</kbd></button>
+        <button data-view="triage"><span data-icon="scan"></span><span>进行智能症状检测</span></button>
+        <button data-view="graph"><span data-icon="graph"></span><span>探索 3D 医疗知识图谱</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-stack" id="toast-stack"></div>
+  <div class="sr-only" id="sr-live" role="status" aria-live="polite"></div>
+  <div class="modal-root" id="modal-root"></div>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "/vendor/three/three.module.min.js",
+        "three/addons/": "/vendor/three/addons/"
+      }
+    }
+  </script>
+  <script type="module" src="/assets/app.js?v=20261106-29"></script>
+</body>
+</html>

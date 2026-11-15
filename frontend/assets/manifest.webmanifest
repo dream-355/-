@@ -1,0 +1,19 @@
+{
+  "name": "知衡健康 · 医疗知识智能体",
+  "short_name": "知衡健康",
+  "description": "医疗知识图谱与受约束人工智能模型驱动的健康问答与连续健康管理",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#07110f",
+  "theme_color": "#07110f",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

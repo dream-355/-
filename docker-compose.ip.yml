@@ -1,0 +1,10 @@
+# IP-only deployment used before the domain has an ICP filing.
+# Caddy is excluded by its profile, and the app binds port 80 directly.
+services:
+  app:
+    ports:
+      - "80:8000"
+
+  caddy:
+    profiles:
+      - domain
